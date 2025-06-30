@@ -12,7 +12,7 @@
       color: #fff;
       display: flex;
       flex-direction: column;
-      align-items: center; 
+      align-items: center;
     }
 
     header {
@@ -20,16 +20,10 @@
       padding: 60px 20px 20px;
     }
 
-    .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
     .logo img {
-      width: 250px; /* Adjust size as needed */
-      max-width: 80%;
+      width: 200px;
       height: auto;
+      margin-bottom: 30px;
     }
 
     h1 {
@@ -52,6 +46,7 @@
       font-size: 1rem;
       text-decoration: none;
       transition: background 0.3s;
+      cursor: pointer;
     }
 
     .download-btn:hover {
@@ -85,17 +80,30 @@
       padding: 20px;
       color: #666;
     }
+
+    /* Fireball styling */
+    #fireball {
+      position: fixed;
+      top: 50%;
+      left: -100px;
+      width: 50px;
+      height: 50px;
+      display: none;
+      transition: left 1.2s linear;
+      z-index: 999;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">
-      <img src="me3phis.png
-" alt="Menphis OS Logo" />
+      <img src="me3phis.png" alt="Menphis OS Logo" />
     </div>
     <h1>Welcome to Menphis OS</h1>
     <p class="tagline">Modern. Minimal. Powerful.</p>
-    <a class="download-btn" href="#">Download Now</a>
+    <a class="download-btn" id="downloadBtn" href="#">Download Now</a>
   </header>
 
   <section class="features">
@@ -116,5 +124,35 @@
   <footer>
     &copy; 2025 Nannosoft Corporation. All rights reserved.
   </footer>
+
+  <!-- Fireball image -->
+  <img id="fireball" src="fireball.png" alt="Fireball" />
+
+  <!-- Happy Ghast sound -->
+  <audio id="happyGhastSound" src="happy-ghast.mp3" preload="auto"></audio>
+
+  <script>
+    const btn = document.getElementById('downloadBtn');
+    const fireball = document.getElementById('fireball');
+    const happyGhastSound = document.getElementById('happyGhastSound');
+
+    btn.addEventListener('mouseover', () => {
+      fireball.style.display = 'block';
+      fireball.style.left = '-100px';
+
+      // Play happy Ghast sound
+      happyGhastSound.currentTime = 0;
+      happyGhastSound.play();
+
+      setTimeout(() => {
+        fireball.style.left = '110%';
+      }, 10);
+
+      setTimeout(() => {
+        fireball.style.display = 'none';
+        fireball.style.left = '-100px';
+      }, 1300);
+    });
+  </script>
 </body>
 </html>
